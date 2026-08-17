@@ -4,17 +4,18 @@ metadata:
   name: pod-init-containers
 spec:
   volumes:
-    - name: sample
+    - name: shared-storage
       emptyDir: {}
   containers:
   - name: nginx
     image: nginx
     volumeMounts:
     - mountPath: /usr/share/nginx/html
-      name: sample
+      name: shared-storage
   initContainers:
   - name: redhat
     image: rkalluru/learnk8s:init-container-html-generator
     volumeMounts:
     - mountPath: /mnt/html
-      name: sample
+      name: shared-storage
+    
